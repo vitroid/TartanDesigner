@@ -211,6 +211,7 @@ PImage createPattern(var colors, var patterns, int sup)
 
 int pressedColor = 0;
 int pressedBar = 0;
+int divi = 4;
 
 void mousePressed()
 {
@@ -223,6 +224,14 @@ void mousePressed()
 	    colorChanged += 1;
 	    break;
 	}
+    }
+    if ( ( panelsize <= mouseX ) && ( mouseX < panelsize*2 ) &&
+	 ( 0 <= mouseY ) && ( mouseY < panelsize ) ){
+	divi = divi * 2;
+	if ( divi == 16 ){
+	    divi = 1;
+	}
+	colorChanged = 1;
     }
     loop();
 }
@@ -248,17 +257,17 @@ void draw() {
 	background(100,0,100);
 	fill(255);
 	
-	PImage pattern4 = createPattern(colors,patterns,4);
+	PImage pattern4 = createPattern(colors,patterns,32/divi);
 	PImage pattern8 = createPattern(colors,patterns,8);
 	pushMatrix();
 	scale(panelsize/(patterns.length()*8));
 	image(pattern8,0,0);
 	popMatrix();
-	for(int i=0;i<4;i++){
-	    for(int j=0;j<4;j++){
+	for(int i=0;i<divi;i++){
+	    for(int j=0;j<divi;j++){
 		pushMatrix();
-		translate(panelsize*(1+i/4),panelsize*(j/4));
-		scale(panelsize/(4*patterns.length()*4));
+		translate(panelsize*(1+i/divi),panelsize*(j/divi));
+		scale(panelsize/(pattern4.width*divi));
 		image(pattern4,0,0);
 		popMatrix();
 	    }
