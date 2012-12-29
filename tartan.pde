@@ -192,11 +192,11 @@ PImage createPattern(var colors, var patterns, int sup)
             float ratio;
             if ( k < 2 ){
                 p = patterns[(int)(i/sup)];
-                ratio = 100-random(10);
+                ratio = 90 - random(10);
             }
             else{
                 p = patterns[(int)(j/sup)];
-                ratio = 100+random(10);
+                ratio = 110 + random(10);
             }
             var c = colors[p];
             float bri = c[2] * ratio / 100;
