@@ -68,43 +68,19 @@ class ColorChooser
 	//hue bar
 	for(int i=0;i<100;i++){
 	    color c;
-	    if ( ( i-1 < col[0] ) && ( col[0] < i+1) ){
-		c = color(0,0,0);
-	    }
-	    else if ( ( i-2 < col[0] ) && ( col[0] < i+2) ){
-		c = color(100,0,100,100);
-	    }
-	    else{
-		c = color(i,col[1],col[2]);
-	    }
+	    c = color(i,col[1],col[2]);
 	    hue.pixels[i] = c;
 	}
 	//saturation bar
 	for(int i=0;i<100;i++){
 	    color c;
-	    if ( ( i-1 < col[1] ) && ( col[1] < i+1) ){
-		c = color(0,0,0);
-	    }
-	    else if ( ( i-2 < col[1] ) && ( col[1] < i+2) ){
-		c = color(100,0,100,100);
-	    }
-	    else{
-		c = color(col[0],i,col[2]);
-	    }
+	    c = color(col[0],i,col[2]);
 	    sat.pixels[i] = c;
 	}
 	//brightness bar
 	for(int i=0;i<100;i++){
 	    color c;
-	    if ( ( i-1 < col[2] ) && ( col[2] < i+1) ){
-		c = color(0,0,0);
-	    }
-	    else if ( ( i-2 < col[2] ) && ( col[2] < i+2) ){
-		c = color(100,0,100,100);
-	    }
-	    else{
-		c = color(col[0],col[1],i);
-	    }
+	    c = color(col[0],col[1],i);
 	    bri.pixels[i] = c;
 	}
 	var barheight = h / 3.3;
@@ -116,8 +92,21 @@ class ColorChooser
 	image(sat,0,1);
 	image(bri,0,2);
 	popMatrix();
+	fill(100,0,100,100);
+	stroke(0);
+	for(int i=0;i<3;i++){
+	    beginShape();
+	    vertex(col[i]*w/100+x,y+barheight*(i+0.5));
+	    vertex(col[i]*w/100+x-barheight/3,y+barheight*i);
+	    vertex(col[i]*w/100+x+barheight/3,y+barheight*i);
+	    endShape(CLOSE);
+	}
 	textAlign(CENTER);
 	textSize(barheight*0.7);
+	fill(100,0,0,100);
+	text((int)(col[0]*3.6),x+w/2+1,y+barheight*0.8+1);
+	text((int)col[1],x+w/2+1,y+barheight*1.8+1);
+	text((int)col[2],x+w/2+1,y+barheight*2.8+1);
 	fill(100,0,100,100);
 	text((int)(col[0]*3.6),x+w/2,y+barheight*0.8);
 	text((int)col[1],x+w/2,y+barheight*1.8);
