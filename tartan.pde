@@ -155,9 +155,9 @@ colors[2] = [0,0,0];
 colors[3] = [0,0,100];
 
 var patterns = [1,1,1,1,1,1,1,3,1,3,1,1,1,1,1,1,1,2,2,2,0,0,0,0,0,0,2,0,0,0,0,0,0,2,2,2];
-var winx = 720;
+var winx = 576;
 var panelsize = winx/2;
-var winy = 720;
+var winy = 576;
 var margin = winx/40;
 var cntlheight = winx/2-margin-2;
 var barheight = cntlheight / colors.length();
@@ -175,7 +175,7 @@ void setup() {
     textAlign(CENTER);
     frameRate(24);
     colorMode(HSB, 100);
-    size(720,720);
+    size(576,576);
 }
 
 
