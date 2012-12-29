@@ -189,18 +189,17 @@ PImage createPattern(var colors, var patterns, int sup)
         for(int j=0; j<patterns.length()*sup;j++){
             int k = (i+j) % 4;
             int  p;
-            float delta;
+            float ratio;
             if ( k < 2 ){
                 p = patterns[(int)(i/sup)];
-                delta = -random(10)-5;
+                ratio = 100-random(10);
             }
             else{
                 p = patterns[(int)(j/sup)];
-                delta = +random(10)+5;
+                ratio = 100+random(10);
             }
             var c = colors[p];
-            float bri = c[2] + delta;
-            if ( bri < 0 ) bri = 0;
+            float bri = c[2] * ratio;
             if ( bri > 100 ) bri = 100;
             pattern.pixels[L] = color(c[0],c[1],bri,100);
             L ++;
